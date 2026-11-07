@@ -18,6 +18,7 @@ button.w{display:block;width:100%;text-align:left}
 button.sel{opacity:.35}
 button:disabled{opacity:.5;cursor:default}
 input{font:inherit;width:100%;padding:12px;border-radius:12px;border:2px solid #c9a7d1;background:var(--bg);color:var(--t);margin:6px 0}
+#body>img{max-height:60vh;object-fit:contain}
 .big{font-size:3.4em;text-align:center;margin:10px 0}
 img{max-width:100%;border-radius:12px;display:block;margin:10px auto}
 .fb{margin-top:12px;font-weight:600}.ok{color:var(--ok)}.no{color:var(--no)}
@@ -38,22 +39,22 @@ img{max-width:100%;border-radius:12px;display:block;margin:10px auto}
 const M=o=>({s:"Música",...o}),C=o=>({s:"Cinema e Séries",...o}),L=o=>({s:"Livros",...o});
 const BANK=[
 /* ---- ANIVERSÁRIO: MÚSICA ---- */
-M({b:1,g:"Halsey",t:"text",q:"Ouve a música ao contrário. Qual é o nome?",a:["Without Me"],yt:"",e:"🔄🎧"}),
-M({b:1,g:"Ashe",t:"text",q:"Ouve a música ao contrário. Qual é o nome?",a:["Moral of the Story"],yt:"",e:"🔄🎧"}),
-M({b:1,g:"Halsey",t:"lofi",q:"Esta versão lo-fi é de que música e de quem? (1 ponto cada)",a:["Bad at Love"],r:["Halsey"],yt:"",e:"☕🎧"}),
-M({b:1,g:"Ashe",t:"lofi",q:"Esta versão lo-fi é de que música e de quem? (1 ponto cada)",a:["Till Forever Falls Apart"],r:["Ashe"],yt:"",e:"☕🎧"}),
-M({b:1,g:"Ashe",t:"text",q:"Que cantora se esconde nestas imagens?",a:["Ashe"],img:"img/rebus-ashe.jpg",e:"🌳🅴"}),
-M({b:1,g:"Halsey",t:"text",q:"Que cantora se esconde nestas imagens?",a:["Halsey"],img:"img/rebus-halsey.jpg",e:"🏛️🌊"}),
+M({b:1,g:"Halsey",t:"text",q:"Ouve a música ao contrário. Qual é o nome?",a:["Without Me"],yt:"kdV6sLKTtjk",e:"🔄🎧"}),
+M({b:1,g:"Ashe",t:"text",q:"Ouve a música ao contrário. Qual é o nome?",a:["Moral of the Story"],yt:"S4HkAZ6MYa4",e:"🔄🎧"}),
+M({b:1,g:"Halsey",t:"lofi",q:"Esta versão lo-fi é de que música e de quem? (1 ponto cada)",a:["Bad at Love"],r:["Halsey"],yt:"MnaiJiDo2OI",e:"☕🎧"}),
+M({b:1,g:"Ashe",t:"lofi",q:"Esta versão lo-fi é de que música e de quem? (1 ponto cada)",a:["Till Forever Falls Apart"],r:["Ashe"],yt:"kg-bl8U0q40",e:"☕🎧"}),
+M({b:1,g:"Ashe",t:"text",q:"Que cantora se esconde nestas imagens?",a:["Ashe"],img:"img/rebus-ashe",e:"🌳🅴"}),
+M({b:1,g:"Halsey",t:"text",q:"Que cantora se esconde nestas imagens?",a:["Halsey"],img:"img/rebus-halsey",e:"🏛️🌊"}),
 M({b:1,g:"Halsey",t:"clues",q:"Quem sou eu? Quanto menos pistas, mais pontos.",c:["Nasci em 1994, em Edison, Nova Jérsia.","O meu álbum de estreia chama-se Badlands (2015).","Cantei «Closer» com os The Chainsmokers.","O meu nome artístico é um anagrama de «Ashley»."],a:["Halsey"]}),
 M({b:1,g:"Halsey",t:"order",q:"Ordena da mais antiga para a mais recente.",items:["Colors","Bad at Love","Without Me"],p:2}),
 M({b:1,g:"Halsey",t:"order",q:"Ordena da mais antiga para a mais recente.",items:["Closer","Eastside","Boy With Luv"],p:2}),
 M({b:1,g:"Halsey",t:"multi",q:"Com quem cantou a Halsey «Eastside»?",o:["Benny Blanco e Khalid","The Weeknd e Drake","Ed Sheeran","Post Malone"],a:["Benny Blanco e Khalid"]}),
 /* ---- ANIVERSÁRIO: CINEMA E SÉRIES ---- */
-C({b:1,g:"Friends",t:"text",q:"Quem é esta personagem?",a:["Phoebe","Phoebe Buffay"],img:"img/phoebe.jpg",e:"🎸"}),
+C({b:1,g:"Friends",t:"text",q:"Quem é esta personagem?",a:["Phoebe","Phoebe Buffay"],img:"img/phoebe",e:"🎸"}),
 C({b:1,g:"Monte dos Vendavais",t:"scramble",q:"Ordena as letras: o protagonista de Monte dos Vendavais.",a:["Heathcliff"]}),
-C({b:1,g:"Friends",t:"text",q:"Que sítio é este?",a:["Central Perk"],img:"img/central-perk.jpg",e:"☕🛋️"}),
+C({b:1,g:"Friends",t:"text",q:"Que sítio é este?",a:["Central Perk"],img:"img/central-perk",e:"☕🛋️"}),
 C({b:1,g:"Friends",t:"multi",q:"«How you doin’?» De que série é esta frase?",o:["Friends","Seinfeld","The Office","How I Met Your Mother"],a:["Friends"]}),
-C({b:1,g:"Friends",t:"order",q:"Ordena por data de estreia, da mais antiga para a mais recente.",items:["Friends|img/capa-friends.jpg","Gossip Girl|img/capa-gossip-girl.jpg","Bridgerton|img/capa-bridgerton.jpg"],p:2}),
+C({b:1,g:"Friends",t:"order",q:"Ordena por data de estreia, da mais antiga para a mais recente.",items:["Friends|img/capa-friends","Gossip Girl|img/capa-gossip-girl","Bridgerton|img/capa-bridgerton"],p:2}),
 C({b:1,g:"Monte dos Vendavais",t:"multi",q:"Quem escreveu «Monte dos Vendavais»?",o:["Emily Brontë","Charlotte Brontë","Jane Austen","Mary Shelley"],a:["Emily Brontë"]}),
 C({b:1,g:"Monte dos Vendavais",t:"text",q:"Quem é a grande paixão de Heathcliff?",a:["Catherine","Cathy","Catherine Earnshaw"]}),
 C({b:1,g:"Friends",t:"clues",q:"Que personagem sou eu?",c:["Ninguém sabe bem qual é o meu emprego.","Divido casa com o Joey.","Casei com a Monica.","Faço piadas sempre que estou nervoso."],a:["Chandler","Chandler Bing"]}),
@@ -63,7 +64,7 @@ C({b:1,g:"Friends",t:"multi",q:"Quem diz «We were on a break!»?",o:["Ross","Ch
 L({b:1,g:"Rebecca Yarros,Fourth Wing",t:"clues",q:"Que livro é este?",c:["Há dragões e só os mais fortes sobrevivem.","Passa-se no Colégio de Guerra de Basgiath.","A autora é Rebecca Yarros.","A protagonista chama-se Violet Sorrengail."],a:["Fourth Wing"]}),
 L({b:1,g:"Sarah J. Maas,ACOTAR",t:"scramble",q:"Ordena as letras: o Alto Lorde da Corte da Noite.",a:["Rhysand"]}),
 L({b:1,g:"Sarah J. Maas,ACOTAR",t:"multi",q:"Quem escreveu «A Court of Thorns and Roses»?",o:["Sarah J. Maas","Rebecca Yarros","Colleen Hoover","Ana Huang"],a:["Sarah J. Maas"]}),
-L({b:1,g:"Sarah J. Maas,Ana Huang,Rebecca Yarros",t:"order",q:"Ordena do livro mais antigo para o mais recente.",items:["A Court of Thorns and Roses|img/capa-acotar.jpg","Twisted Love|img/capa-twisted-love.jpg","Fourth Wing|img/capa-fourth-wing.jpg"],p:2}),
+L({b:1,g:"Sarah J. Maas,Ana Huang,Rebecca Yarros",t:"order",q:"Ordena do livro mais antigo para o mais recente.",items:["A Court of Thorns and Roses|img/capa-acotar","Twisted Love|img/capa-twisted-love","Fourth Wing|img/capa-fourth-wing"],p:2}),
 L({b:1,g:"Rebecca Yarros,Fourth Wing",t:"text",q:"Como se chama o dragão negro da Violet?",a:["Tairn"]}),
 L({b:1,g:"Sarah J. Maas,ACOTAR",t:"multi",q:"Quem é a protagonista de «A Court of Thorns and Roses»?",o:["Feyre","Nesta","Elain","Mor"],a:["Feyre"]}),
 L({b:1,g:"Sarah J. Maas,ACOTAR",t:"text",q:"Qual é a corte de Rhysand?",a:["Night Court","Corte da Noite","Corte Noturna"]}),
@@ -75,8 +76,8 @@ M({g:"Coldplay,Rock",t:"text",q:"Que banda se esconde nestas imagens?",a:["Coldp
 M({g:"Queen,Rock",t:"clues",q:"Que banda sou eu?",c:["Formámo-nos em Londres em 1970.","O nosso vocalista nasceu em Zanzibar.","Tocámos «Bohemian Rhapsody».","O nosso vocalista chamava-se Freddie Mercury."],a:["Queen"]}),
 M({g:"Pop,Rock",t:"order",q:"Ordena da mais antiga para a mais recente.",items:["Thriller","Smells Like Teen Spirit","Shape of You"],p:2}),
 M({g:"Pop",t:"multi",q:"Quem canta «Bad Guy»?",o:["Billie Eilish","Dua Lipa","Lorde","Olivia Rodrigo"],a:["Billie Eilish"]}),
-M({g:"Pop",t:"lofi",q:"Música e cantora desta versão lo-fi? (1 ponto cada)",a:["Someone Like You"],r:["Adele"],yt:"",e:"☕🎧"}),
-M({g:"Queen,Rock",t:"text",q:"Ouve ao contrário. Qual é a música?",a:["Bohemian Rhapsody"],yt:"",e:"🔄🎧"}),
+M({g:"Pop",t:"lofi",q:"Música e cantora desta versão lo-fi? (1 ponto cada)",a:["Someone Like You"],r:["Adele"],yt:"hOqJ960z6F0",e:"☕🎧"}),
+M({g:"Queen,Rock",t:"text",q:"Ouve ao contrário. Qual é a música?",a:["Bohemian Rhapsody"],yt:"fJ9rUzIMcZQ",e:"🔄🎧"}),
 C({g:"Senhor dos Anéis",t:"scramble",q:"Ordena as letras: o mago d’O Senhor dos Anéis.",a:["Gandalf"]}),
 C({g:"Star Wars",t:"multi",q:"«Que a Força esteja contigo.» De que saga é?",o:["Star Wars","Star Trek","Matrix","Dune"],a:["Star Wars"]}),
 C({g:"Filmes",t:"order",q:"Ordena por data de estreia.",items:["Titanic|","Avatar|","Barbie|"],p:2}),
@@ -94,8 +95,11 @@ const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/
 const hit=(v,a)=>a.some(x=>norm(x)==norm(v));
 const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 const vid=u=>(String(u).match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/)||[0,String(u).length==11?u:""])[1];
-const cell=v=>{const[n,u]=v.split("|");return u?`<img src="${u}" alt="${n}" style="height:90px;margin:0" onerror="this.outerHTML='${n}'">`:n};
-const media=q=>(q.yt!=null?(vid(q.yt)?'<div id="yt"></div><button class="o" id="pl">▶ Ouvir</button>':'<p class="m">🎧 Falta o link do YouTube desta pergunta</p>'):"")+(q.img?`<img src="${q.img}" alt="" onerror="this.outerHTML='<div class=big>${q.e||"🖼️"}</div>'">`:(q.e?`<div class="big">${q.e}</div>`:""));
+const EXT=["png","jpg","jpeg","webp"];
+function imgErr(e){const k=+e.dataset.x+1;if(k<EXT.length){e.dataset.x=k;e.src=e.dataset.b+"."+EXT[k]}else e.outerHTML=e.dataset.f}
+const im=(b,f,st="")=>`<img src="${b}.png" data-b="${b}" data-x="0" data-f="${f.replace(/"/g,"&quot;")}" alt="" style="${st}" onerror="imgErr(this)">`;
+const cell=v=>{const[n,u]=v.split("|");return u?im(u,n,"height:90px;margin:0"):n};
+const media=q=>(q.yt!=null?(vid(q.yt)?'<div id="yt"></div><button class="o" id="pl">▶ Ouvir</button>':'<p class="m">🎧 Falta o link do YouTube desta pergunta</p>'):"")+(q.img?im(q.img,`<div class=big>${q.e||"🖼️"}</div>`):(q.e?`<div class="big">${q.e}</div>`:""));
 const inp=(id,ph)=>`<input id="${id}" placeholder="${ph}" autocomplete="off">`;
 const max=Z=>Z.reduce((s,q)=>s+(q.t=="lofi"?2:q.t=="clues"?5:q.p||1),0);
 let Z,i,score,mode;
