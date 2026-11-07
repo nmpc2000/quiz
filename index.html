@@ -3,28 +3,29 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Quiz de Anos 🎂</title>
 <style>
-:root{--bg:#fff5f8;--c:#fff;--t:#2b1b2e;--p:#d6336c;--p2:#862e9c;--ok:#2f9e44;--no:#e03131;--m:#7a6580}
-@media(prefers-color-scheme:dark){:root{--bg:#1d1220;--c:#2a1a2e;--t:#f8eef9;--m:#b8a2bd}}
+:root{--bg:#fff9db;--c:#fff;--t:#3b2f05;--p:#b36b00;--y1:#ffe066;--y2:#fcc419;--ok:#2f9e44;--no:#e03131;--m:#7a6a2a}
+@media(prefers-color-scheme:dark){:root{--bg:#2b2406;--c:#3a3009;--t:#fff6cc;--m:#d9c98a;--p:#ffc94d}}
 *{box-sizing:border-box}
 body{margin:0;font:17px/1.4 system-ui,sans-serif;background:var(--bg);color:var(--t);min-height:100vh;display:flex;justify-content:center}
 #app{width:100%;max-width:560px;padding:20px}
 .card{background:var(--c);border-radius:18px;padding:20px;box-shadow:0 4px 20px #0001}
 h1,h2{margin:.2em 0 .5em}
 .sec{color:var(--p);font-weight:700;font-size:.8em;text-transform:uppercase;letter-spacing:.06em;margin-top:10px}
-button{font:inherit;border:0;border-radius:12px;padding:12px 16px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;cursor:pointer;margin:4px 4px 4px 0}
-button.o{background:var(--bg);color:var(--t);border:2px solid #c9a7d1}
-button.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-color:transparent}
+button{font:inherit;border:0;border-radius:12px;padding:12px 16px;background:linear-gradient(135deg,var(--y1),var(--y2));color:#3b2f05;cursor:pointer;margin:4px 4px 4px 0}
+button.o{background:var(--bg);color:var(--t);border:2px solid #e8c547}
+button.on{background:linear-gradient(135deg,var(--y1),var(--y2));color:#3b2f05;border-color:transparent}
 button.w{display:block;width:100%;text-align:left}
 button.sel{opacity:.35}
 button:disabled{opacity:.5;cursor:default}
-input{font:inherit;width:100%;padding:12px;border-radius:12px;border:2px solid #c9a7d1;background:var(--bg);color:var(--t);margin:6px 0}
+input{font:inherit;width:100%;padding:12px;border-radius:12px;border:2px solid #e8c547;background:var(--bg);color:var(--t);margin:6px 0}
 #body>img{max-height:60vh;object-fit:contain}
+input[type=range]{padding:0;border:0;margin:8px 0;accent-color:#fcc419;background:none}
 .big{font-size:3.4em;text-align:center;margin:10px 0}
 img{max-width:100%;border-radius:12px;display:block;margin:10px auto}
 .fb{margin-top:12px;font-weight:600}.ok{color:var(--ok)}.no{color:var(--no)}
-.bar{height:6px;background:#c9a7d144;border-radius:9px;margin-bottom:14px}
-.bar i{display:block;height:100%;background:var(--p);border-radius:9px}
-.ans{min-height:50px;border:2px dashed #c9a7d1;border-radius:12px;padding:6px;margin:8px 0}
+.bar{height:6px;background:#e8c54744;border-radius:9px;margin-bottom:14px}
+.bar i{display:block;height:100%;background:var(--y2);border-radius:9px}
+.ans{min-height:50px;border:2px dashed #e8c547;border-radius:12px;padding:6px;margin:8px 0}
 .ans span{display:inline-block;margin:2px 6px 2px 0;font-weight:700}
 .m{color:var(--m);font-size:.9em}
 #yt{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
@@ -54,17 +55,24 @@ C({b:1,g:"Friends",t:"text",q:"Quem é esta personagem?",a:["Phoebe","Phoebe Buf
 C({b:1,g:"Monte dos Vendavais",t:"scramble",q:"Ordena as letras: o protagonista de Monte dos Vendavais.",a:["Heathcliff"]}),
 C({b:1,g:"Friends",t:"text",q:"Que sítio é este?",a:["Central Perk"],img:"img/central-perk",e:"☕🛋️"}),
 C({b:1,g:"Friends",t:"multi",q:"«How you doin’?» De que série é esta frase?",o:["Friends","Seinfeld","The Office","How I Met Your Mother"],a:["Friends"]}),
-C({b:1,g:"Friends",t:"order",q:"Ordena por data de estreia, da mais antiga para a mais recente.",items:["Friends|img/capa-friends","Gossip Girl|img/capa-gossip-girl","Bridgerton|img/capa-bridgerton"],p:2}),
+C({b:1,g:"Friends",t:"order",q:"Ordena estes momentos de Friends pela ordem em que acontecem.",items:["Rachel aparece de vestido de noiva no Central Perk","Chandler e Monica passam a noite juntos em Londres","Nasce a Emma"],p:2}),
 C({b:1,g:"Monte dos Vendavais",t:"multi",q:"Quem escreveu «Monte dos Vendavais»?",o:["Emily Brontë","Charlotte Brontë","Jane Austen","Mary Shelley"],a:["Emily Brontë"]}),
 C({b:1,g:"Monte dos Vendavais",t:"text",q:"Quem é a grande paixão de Heathcliff?",a:["Catherine","Cathy","Catherine Earnshaw"]}),
-C({b:1,g:"Friends",t:"clues",q:"Que personagem sou eu?",c:["Ninguém sabe bem qual é o meu emprego.","Divido casa com o Joey.","Casei com a Monica.","Faço piadas sempre que estou nervoso."],a:["Chandler","Chandler Bing"]}),
+C({b:1,g:"Friends",t:"clues",q:"Que personagem sou eu?",c:["Odeio o Dia de Ação de Graças desde os 9 anos.", "Tenho 2 mães.", "Já urinei na mulher que depois casei.", "Vivi em Tulsa.", "Vivi muito tempo com o Joey."],a:["Chandler", "Chandler Bing"]}),
 C({b:1,g:"Friends",t:"multi",q:"Quantas temporadas tem Friends?",o:["8","9","10","12"],a:["10"]}),
 C({b:1,g:"Friends",t:"multi",q:"Quem diz «We were on a break!»?",o:["Ross","Chandler","Joey","Gunther"],a:["Ross"]}),
+C({b:1,g:"Friends",t:"clues",q:"Que personagem sou eu?",c:["A minha primeira mulher acabou por ficar com a Susan.", "Tive um macaco chamado Marcel.", "Disse o nome errado no altar.", "Sou o único do grupo com um doutoramento.", "Tenho um filho chamado Ben e uma filha chamada Emma."],a:["Ross", "Ross Geller"]}),
+C({b:1,g:"Friends",t:"clues",q:"Que personagem sou eu?",c:["O meu nome completo é Joseph Francis Tribbiani Jr.", "Caí por um poço de elevador numa novela.", "Contracenei com um robô chamado Mac.", "Tenho sete irmãs.", "Não divido a minha comida!"],a:["Joey", "Joey Tribbiani"]}),
+C({b:1,g:"Friends",t:"clues",q:"Que personagem sou eu?",c:["Tenho 11 categorias diferentes de toalhas.", "O meu apartamento é uma herança da minha avó, com renda antiga.", "Fui chef no Alessandro’s e no Javu.", "Disputo todos os anos a Taça Geller.", "Casei com o melhor amigo do meu irmão."],a:["Monica", "Monica Geller"]}),
+C({b:1,g:"Friends",t:"clues",q:"Que personagem sou eu?",c:["O meu pai é médico e a minha mãe chama-se Sandra.", "O meu noivo era um ortodontista chamado Barry.", "Trabalhei na Bloomingdale’s e na Ralph Lauren.", "Tive um gato sem pelo chamado Mrs. Whiskerson.", "Tenho uma filha chamada Emma."],a:["Rachel", "Rachel Green"]}),
+C({b:1,g:"Friends",t:"multi",q:"Quem diz «Could I BE any more…?»",o:["Chandler","Ross","Joey","Gunther"],a:["Chandler"]}),
+C({b:1,g:"Friends",t:"multi",q:"Quem diz «Oh. My. God.» com aquela voz inconfundível?",o:["Janice","Rachel","Monica","Phoebe"],a:["Janice"]}),
+C({b:1,g:"Monte dos Vendavais",t:"multi",q:"Em Monte dos Vendavais, quem diz «I am Heathcliff!»?",o:["Catherine","Isabella","Nelly","Hindley"],a:["Catherine"]}),
 /* ---- ANIVERSÁRIO: LIVROS ---- */
 L({b:1,g:"Rebecca Yarros,Fourth Wing",t:"clues",q:"Que livro é este?",c:["Há dragões e só os mais fortes sobrevivem.","Passa-se no Colégio de Guerra de Basgiath.","A autora é Rebecca Yarros.","A protagonista chama-se Violet Sorrengail."],a:["Fourth Wing"]}),
 L({b:1,g:"Sarah J. Maas,ACOTAR",t:"scramble",q:"Ordena as letras: o Alto Lorde da Corte da Noite.",a:["Rhysand"]}),
 L({b:1,g:"Sarah J. Maas,ACOTAR",t:"multi",q:"Quem escreveu «A Court of Thorns and Roses»?",o:["Sarah J. Maas","Rebecca Yarros","Colleen Hoover","Ana Huang"],a:["Sarah J. Maas"]}),
-L({b:1,g:"Sarah J. Maas,Ana Huang,Rebecca Yarros",t:"order",q:"Ordena do livro mais antigo para o mais recente.",items:["A Court of Thorns and Roses|img/capa-acotar","Twisted Love|img/capa-twisted-love","Fourth Wing|img/capa-fourth-wing"],p:2}),
+L({b:1,g:"Sarah J. Maas,Ana Huang,Rebecca Yarros",t:"order",q:"Ordena do livro mais antigo para o mais recente.",items:["A Court of Thorns and Roses","Twisted Love","Fourth Wing"],p:2}),
 L({b:1,g:"Rebecca Yarros,Fourth Wing",t:"text",q:"Como se chama o dragão negro da Violet?",a:["Tairn"]}),
 L({b:1,g:"Sarah J. Maas,ACOTAR",t:"multi",q:"Quem é a protagonista de «A Court of Thorns and Roses»?",o:["Feyre","Nesta","Elain","Mor"],a:["Feyre"]}),
 L({b:1,g:"Sarah J. Maas,ACOTAR",t:"text",q:"Qual é a corte de Rhysand?",a:["Night Court","Corte da Noite","Corte Noturna"]}),
@@ -99,18 +107,30 @@ const EXT=["png","jpg","jpeg","webp"];
 function imgErr(e){const k=+e.dataset.x+1;if(k<EXT.length){e.dataset.x=k;e.src=e.dataset.b+"."+EXT[k]}else e.outerHTML=e.dataset.f}
 const im=(b,f,st="")=>`<img src="${b}.png" data-b="${b}" data-x="0" data-f="${f.replace(/"/g,"&quot;")}" alt="" style="${st}" onerror="imgErr(this)">`;
 const cell=v=>{const[n,u]=v.split("|");return u?im(u,n,"height:90px;margin:0"):n};
-const media=q=>(q.yt!=null?(vid(q.yt)?'<div id="yt"></div><button class="o" id="pl">▶ Ouvir</button>':'<p class="m">🎧 Falta o link do YouTube desta pergunta</p>'):"")+(q.img?im(q.img,`<div class=big>${q.e||"🖼️"}</div>`):(q.e?`<div class="big">${q.e}</div>`:""));
+const media=q=>(q.yt!=null?(vid(q.yt)?'<div id="yt"></div><div><button class="o ctl" id="pl">▶ Ouvir</button><button class="o ctl" id="bk">⏪ 10 s</button><button class="o ctl" id="fw">10 s ⏩</button> <span id="tm" class="m">0:00 / 0:00</span></div><input type="range" id="sk" min="0" max="100" step="0.1" value="0">':'<p class="m">🎧 Falta o link do YouTube desta pergunta</p>'):"")+(q.img?im(q.img,`<div class=big>${q.e||"🖼️"}</div>`):(q.e?`<div class="big">${q.e}</div>`:""));
 const inp=(id,ph)=>`<input id="${id}" placeholder="${ph}" autocomplete="off">`;
 const max=Z=>Z.reduce((s,q)=>s+(q.t=="lofi"?2:q.t=="clues"?5:q.p||1),0);
-let Z,i,score,mode;
+let Z,i,res,mode;
+const sc=()=>res.reduce((a,r)=>a+(r?r.g:0),0);
+function go(d){i+=d;show()}
 document.addEventListener("keydown",e=>{if(e.key=="Enter")$("#ok")?.click()});
 
 function ytInit(q){
  const id=vid(q.yt||"");if(!id||!$("#yt"))return;
+ const lo=q.st||0,fmt=t=>(t/60|0)+":"+String(t%60|0).padStart(2,"0");
  const mk=()=>{
-  let on=0;const v={playsinline:1,rel:0,start:q.st||0};if(q.en)v.end=q.en;
-  const p=new YT.Player("yt",{width:1,height:1,videoId:id,playerVars:v,events:{onStateChange:e=>{if(e.data===0){on=0;$("#pl")&&($("#pl").textContent="▶ Ouvir")}}}});
-  $("#pl").onclick=()=>{try{on=!on;on?(p.seekTo(q.st||0),p.playVideo()):p.pauseVideo();$("#pl").textContent=on?"⏸ Pausa":"▶ Ouvir"}catch(e){}};
+  let drag=0,tick;
+  const v={playsinline:1,rel:0,start:lo};if(q.en)v.end=q.en;
+  const p=new YT.Player("yt",{width:1,height:1,videoId:id,playerVars:v,events:{onStateChange:e=>{const pl=$("#pl");if(pl&&e.data===1)pl.textContent="⏸ Pausa";else if(pl&&(e.data===2||e.data===0))pl.textContent="▶ Ouvir"}}});
+  const H=()=>q.en||p.getDuration()||0;
+  $("#pl").onclick=()=>{try{if(p.getPlayerState()===1)p.pauseVideo();else{if(p.getCurrentTime()>=H()-.5)p.seekTo(lo,true);p.playVideo()}}catch(e){}};
+  $("#bk").onclick=()=>{try{p.seekTo(Math.max(lo,p.getCurrentTime()-10),true)}catch(e){}};
+  $("#fw").onclick=()=>{try{p.seekTo(Math.min(H(),p.getCurrentTime()+10),true)}catch(e){}};
+  const sk=$("#sk");
+  sk.oninput=()=>{drag=1;$("#tm").textContent=fmt(Math.max(0,+sk.value-lo))+" / "+fmt(Math.max(0,H()-lo))};
+  sk.onchange=()=>{try{p.seekTo(+sk.value,true)}catch(e){}drag=0};
+  tick=setInterval(()=>{const s=$("#sk");if(!s){clearInterval(tick);return}
+   try{const h=H(),t=p.getCurrentTime();s.min=lo;s.max=h;if(!drag)s.value=t;if(!drag)$("#tm").textContent=fmt(Math.max(0,t-lo))+" / "+fmt(Math.max(0,h-lo))}catch(e){}},250);
  };
  if(window.YT&&YT.Player)mk();else{window.onYouTubeIframeAPIReady=mk;if(!window.ytl){window.ytl=1;const s=document.createElement("script");s.src="https://www.youtube.com/iframe_api";document.head.appendChild(s)}}
 }
@@ -127,22 +147,23 @@ function rnd(){
   $("#go").onclick=()=>{const p=BANK.filter(q=>!S.size||q.g.split(",").some(t=>S.has(t)));start(O.flatMap(s=>shuf(p.filter(q=>q.s==s)).slice(0,10)),"r")};
  };d();
 }
-function start(list,m){Z=list;mode=m;i=0;score=0;show()}
+function start(list,m){Z=list;mode=m;i=0;res=[];show()}
 function show(){
  if(i>=Z.length)return end();
  const q=Z[i];
- $("#app").innerHTML=`<div class="card"><div class="bar"><i style="width:${i/Z.length*100}%"></i></div><div class="sec" style="margin:0">${q.s} · ${i+1}/${Z.length}</div><h2>${q.q}</h2><div id="body"></div><div id="fb" class="fb"></div><div id="act"></div></div>`;
+ $("#app").innerHTML=`<div class="card"><div class="bar"><i style="width:${i/Z.length*100}%"></i></div><div class="sec" style="margin:0">${q.s} · ${i+1}/${Z.length}</div><h2>${q.q}</h2><div id="body"></div><div id="fb" class="fb"></div><div><button class="o" onclick="go(-1)"${i?"":" disabled"}>← Anterior</button><button onclick="go(1)">${i+1<Z.length?"Seguinte →":"Ver resultado"}</button></div></div>`;
  R[q.t](q);ytInit(q);
+ if(res[i]){lock(res[i]);if(q.t=="clues")allClues(q)}
 }
-function fin(gain,msg){
- score+=gain;
- document.querySelectorAll("#body button:not(#pl),#body input").forEach(e=>e.disabled=true);
- $("#fb").innerHTML=`<span class="${gain?"ok":"no"}">${msg}</span>`;
- $("#act").innerHTML=`<button onclick="i++;show()">${i+1<Z.length?"Seguinte →":"Ver resultado"}</button>`;
+function lock(r){
+ document.querySelectorAll("#body button:not(.ctl),#body input:not(#sk)").forEach(e=>e.disabled=true);
+ $("#fb").innerHTML=`<span class="${r.g?"ok":"no"}">${r.m}</span>`;
 }
+function fin(gain,msg){res[i]={g:gain,m:msg};lock(res[i])}
+const allClues=q=>{$("#body").innerHTML=q.c.map((c,k)=>`<p>💡 ${k+1}. ${c}</p>`).join("")};
 function end(){
- const f=score/max(Z);
- $("#app").innerHTML=`<div class="card"><h1>${score} / ${max(Z)} pontos</h1><p>${f>.7?"Incrível! Sabes tudo! 🎉":f>.4?"Muito bem! 💖":"Foi giro na mesma! 😄"}</p>${mode=="a"?"<h2>Feliz aniversário! 🎂❤️</h2>":""}<button onclick="home()">Voltar ao início</button></div>`;
+ const t=max(Z),f=sc()/t,u=Z.filter((_,k)=>!res[k]).length;
+ $("#app").innerHTML=`<div class="card"><h1>${sc()} / ${t} pontos</h1>${u?`<p class="m">Ficaram ${u} pergunta(s) por responder.</p>`:""}<p>${f>.7?"Incrível! Sabes tudo! 🎉":f>.4?"Muito bem! 💖":"Foi giro na mesma! 😄"}</p>${mode=="a"?"<h2>Feliz aniversário! 🎂❤️</h2>":""}<button class="o" onclick="i=Z.length-1;show()">← Rever perguntas</button><button onclick="home()">Voltar ao início</button></div>`;
 }
 
 const R={
@@ -165,8 +186,8 @@ clues(q){
   $("#x").focus();
   $("#ok").onclick=()=>{
    const p=Math.max(1,5-n);
-   if(hit($("#x").value,q.a))return fin(p,"✅ Certo! +"+p);
-   if(n<q.c.length-1){n++;note=" · errado, nova pista!";draw()}else fin(0,"❌ Era: "+q.a[0]);
+   if(hit($("#x").value,q.a)){fin(p,"✅ Certo! +"+p);return allClues(q)}
+   if(n<q.c.length-1){n++;note=" · errado, nova pista!";draw()}else{fin(0,"❌ Era: "+q.a[0]);allClues(q)}
   };
  };
  draw();
