@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quiz de Anos 🎂</title>
+<style>
+:root{--bg:#fff5f8;--c:#fff;--t:#2b1b2e;--p:#d6336c;--p2:#862e9c;--ok:#2f9e44;--no:#e03131;--m:#7a6580}
+@media(prefers-color-scheme:dark){:root{--bg:#1d1220;--c:#2a1a2e;--t:#f8eef9;--m:#b8a2bd}}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.4 system-ui,sans-serif;background:var(--bg);color:var(--t);min-height:100vh;display:flex;justify-content:center}
+#app{width:100%;max-width:560px;padding:20px}
+.card{background:var(--c);border-radius:18px;padding:20px;box-shadow:0 4px 20px #0001}
+h1,h2{margin:.2em 0 .5em}
+.sec{color:var(--p);font-weight:700;font-size:.8em;text-transform:uppercase;letter-spacing:.06em;margin-top:10px}
+button{font:inherit;border:0;border-radius:12px;padding:12px 16px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;cursor:pointer;margin:4px 4px 4px 0}
+button.o{background:var(--bg);color:var(--t);border:2px solid #c9a7d1}
+button.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-color:transparent}
+button.w{display:block;width:100%;text-align:left}
+button.sel{opacity:.35}
+button:disabled{opacity:.5;cursor:default}
+input{font:inherit;width:100%;padding:12px;border-radius:12px;border:2px solid #c9a7d1;background:var(--bg);color:var(--t);margin:6px 0}
+.big{font-size:3.4em;text-align:center;margin:10px 0}
+img{max-width:100%;border-radius:12px;display:block;margin:10px auto}
+.fb{margin-top:12px;font-weight:600}.ok{color:var(--ok)}.no{color:var(--no)}
+.bar{height:6px;background:#c9a7d144;border-radius:9px;margin-bottom:14px}
+.bar i{display:block;height:100%;background:var(--p);border-radius:9px}
+.ans{min-height:50px;border:2px dashed #c9a7d1;border-radius:12px;padding:6px;margin:8px 0}
+.ans span{display:inline-block;margin:2px 6px 2px 0;font-weight:700}
+.m{color:var(--m);font-size:.9em}
+#yt{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+</style></head>
+<body><div id="app"></div>
+<script>
+/* ===== CONFIGURAÇÃO =====
+ yt  = link ou ID do YouTube (o vídeo fica escondido, só se ouve); st/en = segundos de início/fim (opcional).
+ img = link ou ficheiro de imagem; e = emoji de reserva. b:1 = entra no modo Aniversário. g = temas (modo Aleatório).
+ Tipos: text, lofi (a = música, r = cantor), multi (o = opções), order (items), scramble, clues (c = pistas).
+ Em order, um item pode ser "Nome|link-da-capa". */
+const M=o=>({s:"Música",...o}),C=o=>({s:"Cinema e Séries",...o}),L=o=>({s:"Livros",...o});
+const BANK=[
+/* ---- ANIVERSÁRIO: MÚSICA ---- */
+M({b:1,g:"Halsey",t:"text",q:"Ouve a música ao contrário. Qual é o nome?",a:["Without Me"],yt:"",e:"🔄🎧"}),
+M({b:1,g:"Ashe",t:"text",q:"Ouve a música ao contrário. Qual é o nome?",a:["Moral of the Story"],yt:"",e:"🔄🎧"}),
+M({b:1,g:"Halsey",t:"lofi",q:"Esta versão lo-fi é de que música e de quem? (1 ponto cada)",a:["Bad at Love"],r:["Halsey"],yt:"",e:"☕🎧"}),
+M({b:1,g:"Ashe",t:"lofi",q:"Esta versão lo-fi é de que música e de quem? (1 ponto cada)",a:["Till Forever Falls Apart"],r:["Ashe"],yt:"",e:"☕🎧"}),
+M({b:1,g:"Ashe",t:"text",q:"Que cantora se esconde nestas imagens?",a:["Ashe"],img:"img/rebus-ashe.jpg",e:"🌳🅴"}),
+M({b:1,g:"Halsey",t:"text",q:"Que cantora se esconde nestas imagens?",a:["Halsey"],img:"img/rebus-halsey.jpg",e:"🏛️🌊"}),
+M({b:1,g:"Halsey",t:"clues",q:"Quem sou eu? Quanto menos pistas, mais pontos.",c:["Nasci em 1994, em Edison, Nova Jérsia.","O meu álbum de estreia chama-se Badlands (2015).","Cantei «Closer» com os The Chainsmokers.","O meu nome artístico é um anagrama de «Ashley»."],a:["Halsey"]}),
+M({b:1,g:"Halsey",t:"order",q:"Ordena da mais antiga para a mais recente.",items:["Colors","Bad at Love","Without Me"],p:2}),
+M({b:1,g:"Halsey",t:"order",q:"Ordena da mais antiga para a mais recente.",items:["Closer","Eastside","Boy With Luv"],p:2}),
+M({b:1,g:"Halsey",t:"multi",q:"Com quem cantou a Halsey «Eastside»?",o:["Benny Blanco e Khalid","The Weeknd e Drake","Ed Sheeran","Post Malone"],a:["Benny Blanco e Khalid"]}),
+/* ---- ANIVERSÁRIO: CINEMA E SÉRIES ---- */
+C({b:1,g:"Friends",t:"text",q:"Quem é esta personagem?",a:["Phoebe","Phoebe Buffay"],img:"img/phoebe.jpg",e:"🎸"}),
+C({b:1,g:"Monte dos Vendavais",t:"scramble",q:"Ordena as letras: o protagonista de Monte dos Vendavais.",a:["Heathcliff"]}),
+C({b:1,g:"Friends",t:"text",q:"Que sítio é este?",a:["Central Perk"],img:"img/central-perk.jpg",e:"☕🛋️"}),
+C({b:1,g:"Friends",t:"multi",q:"«How you doin’?» De que série é esta frase?",o:["Friends","Seinfeld","The Office","How I Met Your Mother"],a:["Friends"]}),
+C({b:1,g:"Friends",t:"order",q:"Ordena por data de estreia, da mais antiga para a mais recente.",items:["Friends|img/capa-friends.jpg","Gossip Girl|img/capa-gossip-girl.jpg","Bridgerton|img/capa-bridgerton.jpg"],p:2}),
+C({b:1,g:"Monte dos Vendavais",t:"multi",q:"Quem escreveu «Monte dos Vendavais»?",o:["Emily Brontë","Charlotte Brontë","Jane Austen","Mary Shelley"],a:["Emily Brontë"]}),
+C({b:1,g:"Monte dos Vendavais",t:"text",q:"Quem é a grande paixão de Heathcliff?",a:["Catherine","Cathy","Catherine Earnshaw"]}),
+C({b:1,g:"Friends",t:"clues",q:"Que personagem sou eu?",c:["Ninguém sabe bem qual é o meu emprego.","Divido casa com o Joey.","Casei com a Monica.","Faço piadas sempre que estou nervoso."],a:["Chandler","Chandler Bing"]}),
+C({b:1,g:"Friends",t:"multi",q:"Quantas temporadas tem Friends?",o:["8","9","10","12"],a:["10"]}),
+C({b:1,g:"Friends",t:"multi",q:"Quem diz «We were on a break!»?",o:["Ross","Chandler","Joey","Gunther"],a:["Ross"]}),
+/* ---- ANIVERSÁRIO: LIVROS ---- */
+L({b:1,g:"Rebecca Yarros,Fourth Wing",t:"clues",q:"Que livro é este?",c:["Há dragões e só os mais fortes sobrevivem.","Passa-se no Colégio de Guerra de Basgiath.","A autora é Rebecca Yarros.","A protagonista chama-se Violet Sorrengail."],a:["Fourth Wing"]}),
+L({b:1,g:"Sarah J. Maas,ACOTAR",t:"scramble",q:"Ordena as letras: o Alto Lorde da Corte da Noite.",a:["Rhysand"]}),
+L({b:1,g:"Sarah J. Maas,ACOTAR",t:"multi",q:"Quem escreveu «A Court of Thorns and Roses»?",o:["Sarah J. Maas","Rebecca Yarros","Colleen Hoover","Ana Huang"],a:["Sarah J. Maas"]}),
+L({b:1,g:"Sarah J. Maas,Ana Huang,Rebecca Yarros",t:"order",q:"Ordena do livro mais antigo para o mais recente.",items:["A Court of Thorns and Roses|img/capa-acotar.jpg","Twisted Love|img/capa-twisted-love.jpg","Fourth Wing|img/capa-fourth-wing.jpg"],p:2}),
+L({b:1,g:"Rebecca Yarros,Fourth Wing",t:"text",q:"Como se chama o dragão negro da Violet?",a:["Tairn"]}),
+L({b:1,g:"Sarah J. Maas,ACOTAR",t:"multi",q:"Quem é a protagonista de «A Court of Thorns and Roses»?",o:["Feyre","Nesta","Elain","Mor"],a:["Feyre"]}),
+L({b:1,g:"Sarah J. Maas,ACOTAR",t:"text",q:"Qual é a corte de Rhysand?",a:["Night Court","Corte da Noite","Corte Noturna"]}),
+L({b:1,g:"Ana Huang,Twisted",t:"multi",q:"Quem é o protagonista de «Twisted Love»?",o:["Alex Volkov","Christian Harper","Josh Chen","Kai Young"],a:["Alex Volkov"]}),
+L({b:1,g:"Rebecca Yarros,Fourth Wing",t:"multi",q:"Qual é o apelido do Xaden em Fourth Wing?",o:["Riorson","Sorrengail","Aetos","Mairi"],a:["Riorson"]}),
+L({b:1,g:"Rebecca Yarros,Fourth Wing",t:"scramble",q:"Ordena as letras: o cavaleiro de dragão mais temido.",a:["Xaden"]}),
+/* ---- EXTRAS (só no modo Aleatório) ---- */
+M({g:"Coldplay,Rock",t:"text",q:"Que banda se esconde nestas imagens?",a:["Coldplay"],e:"🥶▶️"}),
+M({g:"Queen,Rock",t:"clues",q:"Que banda sou eu?",c:["Formámo-nos em Londres em 1970.","O nosso vocalista nasceu em Zanzibar.","Tocámos «Bohemian Rhapsody».","O nosso vocalista chamava-se Freddie Mercury."],a:["Queen"]}),
+M({g:"Pop,Rock",t:"order",q:"Ordena da mais antiga para a mais recente.",items:["Thriller","Smells Like Teen Spirit","Shape of You"],p:2}),
+M({g:"Pop",t:"multi",q:"Quem canta «Bad Guy»?",o:["Billie Eilish","Dua Lipa","Lorde","Olivia Rodrigo"],a:["Billie Eilish"]}),
+M({g:"Pop",t:"lofi",q:"Música e cantora desta versão lo-fi? (1 ponto cada)",a:["Someone Like You"],r:["Adele"],yt:"",e:"☕🎧"}),
+M({g:"Queen,Rock",t:"text",q:"Ouve ao contrário. Qual é a música?",a:["Bohemian Rhapsody"],yt:"",e:"🔄🎧"}),
+C({g:"Senhor dos Anéis",t:"scramble",q:"Ordena as letras: o mago d’O Senhor dos Anéis.",a:["Gandalf"]}),
+C({g:"Star Wars",t:"multi",q:"«Que a Força esteja contigo.» De que saga é?",o:["Star Wars","Star Trek","Matrix","Dune"],a:["Star Wars"]}),
+C({g:"Filmes",t:"order",q:"Ordena por data de estreia.",items:["Titanic|","Avatar|","Barbie|"],p:2}),
+C({g:"Harry Potter",t:"scramble",q:"Ordena as letras: a melhor amiga do Harry Potter.",a:["Hermione"]}),
+C({g:"Harry Potter",t:"multi",q:"Em que casa de Hogwarts está o Harry?",o:["Grifinória","Slytherin","Corvinal","Lufa-Lufa"],a:["Grifinória"]}),
+C({g:"Star Wars",t:"multi",q:"Quem é o pai de Luke Skywalker?",o:["Darth Vader","Obi-Wan","Yoda","Han Solo"],a:["Darth Vader"]}),
+L({g:"Colleen Hoover",t:"multi",q:"Quem escreveu «É Assim que Acaba»?",o:["Colleen Hoover","Ana Huang","Sarah J. Maas","Emily Henry"],a:["Colleen Hoover"]}),
+L({g:"Colleen Hoover",t:"text",q:"Como se chama a protagonista de «É Assim que Acaba»?",a:["Lily Bloom","Lily"]}),
+L({g:"Outros",t:"multi",q:"Quem escreveu «1984»?",o:["George Orwell","Aldous Huxley","Ray Bradbury","Franz Kafka"],a:["George Orwell"]})
+];
+
+/* ===== MOTOR ===== */
+const $=s=>document.querySelector(s);
+const norm=s=>String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]/g,"");
+const hit=(v,a)=>a.some(x=>norm(x)==norm(v));
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const vid=u=>(String(u).match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/)||[0,String(u).length==11?u:""])[1];
+const cell=v=>{const[n,u]=v.split("|");return u?`<img src="${u}" alt="${n}" style="height:90px;margin:0" onerror="this.outerHTML='${n}'">`:n};
+const media=q=>(q.yt!=null?(vid(q.yt)?'<div id="yt"></div><button class="o" id="pl">▶ Ouvir</button>':'<p class="m">🎧 Falta o link do YouTube desta pergunta</p>'):"")+(q.img?`<img src="${q.img}" alt="" onerror="this.outerHTML='<div class=big>${q.e||"🖼️"}</div>'">`:(q.e?`<div class="big">${q.e}</div>`:""));
+const inp=(id,ph)=>`<input id="${id}" placeholder="${ph}" autocomplete="off">`;
+const max=Z=>Z.reduce((s,q)=>s+(q.t=="lofi"?2:q.t=="clues"?5:q.p||1),0);
+let Z,i,score,mode;
+document.addEventListener("keydown",e=>{if(e.key=="Enter")$("#ok")?.click()});
+
+function ytInit(q){
+ const id=vid(q.yt||"");if(!id||!$("#yt"))return;
+ const mk=()=>{
+  let on=0;const v={playsinline:1,rel:0,start:q.st||0};if(q.en)v.end=q.en;
+  const p=new YT.Player("yt",{width:1,height:1,videoId:id,playerVars:v,events:{onStateChange:e=>{if(e.data===0){on=0;$("#pl")&&($("#pl").textContent="▶ Ouvir")}}}});
+  $("#pl").onclick=()=>{try{on=!on;on?(p.seekTo(q.st||0),p.playVideo()):p.pauseVideo();$("#pl").textContent=on?"⏸ Pausa":"▶ Ouvir"}catch(e){}};
+ };
+ if(window.YT&&YT.Player)mk();else{window.onYouTubeIframeAPIReady=mk;if(!window.ytl){window.ytl=1;const s=document.createElement("script");s.src="https://www.youtube.com/iframe_api";document.head.appendChild(s)}}
+}
+function home(){
+ mode="";
+ $("#app").innerHTML=`<div class="card"><h1>🎂 Quiz de Anos</h1><p>Escolhe como queres jogar.</p><button class="w" onclick="start(BANK.filter(q=>q.b),'a')">🎂 Aniversário</button><button class="w o" onclick="rnd()">🎲 Aleatório</button></div>`;
+}
+function rnd(){
+ const S=new Set(),T={},O=["Música","Cinema e Séries","Livros"];
+ BANK.forEach(q=>q.g.split(",").forEach(t=>{(T[q.s]=T[q.s]||new Set()).add(t)}));
+ const d=()=>{
+  $("#app").innerHTML=`<div class="card"><h1>🎲 Aleatório</h1><p class="m">Escolhe bandas, géneros, autores ou sagas. Sem escolha, entra tudo. Até 10 perguntas por secção.</p>`+O.map(s=>`<div class="sec">${s}</div><div>${[...T[s]].map(t=>`<button class="o${S.has(t)?" on":""}" data-t="${t}">${t}</button>`).join("")}</div>`).join("")+`<br><button id="go">Começar</button><button class="o" onclick="home()">Voltar</button></div>`;
+  document.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{const t=b.dataset.t;S.has(t)?S.delete(t):S.add(t);d()});
+  $("#go").onclick=()=>{const p=BANK.filter(q=>!S.size||q.g.split(",").some(t=>S.has(t)));start(O.flatMap(s=>shuf(p.filter(q=>q.s==s)).slice(0,10)),"r")};
+ };d();
+}
+function start(list,m){Z=list;mode=m;i=0;score=0;show()}
+function show(){
+ if(i>=Z.length)return end();
+ const q=Z[i];
+ $("#app").innerHTML=`<div class="card"><div class="bar"><i style="width:${i/Z.length*100}%"></i></div><div class="sec" style="margin:0">${q.s} · ${i+1}/${Z.length}</div><h2>${q.q}</h2><div id="body"></div><div id="fb" class="fb"></div><div id="act"></div></div>`;
+ R[q.t](q);ytInit(q);
+}
+function fin(gain,msg){
+ score+=gain;
+ document.querySelectorAll("#body button:not(#pl),#body input").forEach(e=>e.disabled=true);
+ $("#fb").innerHTML=`<span class="${gain?"ok":"no"}">${msg}</span>`;
+ $("#act").innerHTML=`<button onclick="i++;show()">${i+1<Z.length?"Seguinte →":"Ver resultado"}</button>`;
+}
+function end(){
+ const f=score/max(Z);
+ $("#app").innerHTML=`<div class="card"><h1>${score} / ${max(Z)} pontos</h1><p>${f>.7?"Incrível! Sabes tudo! 🎉":f>.4?"Muito bem! 💖":"Foi giro na mesma! 😄"}</p>${mode=="a"?"<h2>Feliz aniversário! 🎂❤️</h2>":""}<button onclick="home()">Voltar ao início</button></div>`;
+}
+
+const R={
+text(q){
+ $("#body").innerHTML=media(q)+inp("x","A tua resposta")+'<button id="ok">Responder</button>';
+ $("#ok").onclick=()=>{const g=hit($("#x").value,q.a);fin(g?q.p||1:0,g?"✅ Certo! +"+(q.p||1):"❌ Era: "+q.a[0])};
+},
+lofi(q){
+ $("#body").innerHTML=media(q)+inp("x","Nome da música")+inp("y","Cantor/banda")+'<button id="ok">Responder</button>';
+ $("#ok").onclick=()=>{const g=hit($("#x").value,q.a)+hit($("#y").value,q.r);fin(g,(g?"✅ +"+g+" · ":"❌ ")+q.a[0]+" — "+q.r[0])};
+},
+multi(q){
+ $("#body").innerHTML=media(q)+shuf(q.o).map(o=>`<button class="o w">${o}</button>`).join("");
+ document.querySelectorAll("#body button").forEach(b=>b.onclick=()=>{const g=b.textContent==q.a[0];fin(g?q.p||1:0,g?"✅ Certo! +1":"❌ Era: "+q.a[0])});
+},
+clues(q){
+ let n=0,note="";
+ const draw=()=>{
+  $("#body").innerHTML=q.c.slice(0,n+1).map((c,k)=>`<p>💡 ${k+1}. ${c}</p>`).join("")+`<p class="m">Vale ${Math.max(1,5-n)} pts${note}</p>`+inp("x","Quem/o quê?")+'<button id="ok">Responder</button>';
+  $("#x").focus();
+  $("#ok").onclick=()=>{
+   const p=Math.max(1,5-n);
+   if(hit($("#x").value,q.a))return fin(p,"✅ Certo! +"+p);
+   if(n<q.c.length-1){n++;note=" · errado, nova pista!";draw()}else fin(0,"❌ Era: "+q.a[0]);
+  };
+ };
+ draw();
+},
+order(q){const nm=q.items.map(v=>v.split("|")[0]);pick(q,q.items,s=>s.map(v=>v.split("|")[0]).join()==nm.join(),nm.join(" → "),q.p||2)},
+scramble(q){pick(q,[...q.a[0].toUpperCase().replace(/ /g,"")],s=>norm(s.join(""))==norm(q.a[0]),q.a[0],q.p||1)}
+};
+function pick(q,items,test,solution,pts){
+ const sh=shuf(items);let sel=[];
+ const draw=()=>{
+  $("#body").innerHTML=media(q)+`<div class="ans">${sel.map(k=>`<span>${cell(sh[k])}</span>`).join("")}</div><div>${sh.map((v,k)=>`<button class="o${sel.includes(k)?" sel":""}" data-k="${k}"${sel.includes(k)?" disabled":""}>${cell(v)}</button>`).join("")}</div><button id="ok">Confirmar</button><button class="o" id="rs">Limpar</button>`;
+  document.querySelectorAll("#body [data-k]").forEach(b=>b.onclick=()=>{sel.push(+b.dataset.k);draw()});
+  $("#rs").onclick=()=>{sel=[];draw()};
+  $("#ok").onclick=()=>{const g=sel.length==sh.length&&test(sel.map(k=>sh[k]));fin(g?pts:0,g?"✅ Certo! +"+pts:"❌ Era: "+solution)};
+ };
+ draw();
+}
+home();
+</script></body></html>
